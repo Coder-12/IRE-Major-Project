@@ -22,7 +22,6 @@ def getdata(filename):
 
 body=getdata(sys.argv[1])
 
-'''
 
 # %%
 # General Bert Summarizer
@@ -32,37 +31,13 @@ model = Summarizer()
 result = model(body, min_length=60)
 
 # %%
-full = ''.join(result)
+with open(sys.argv[2],'w') as fp:
+    sentences=result.split('\n')
+    for sent in sentences:
+        fp.write(sent+'\n')
+ fp.close()
 
 # %%
-print(full)
-
-# %%
-
-# %%
-# Code To Generate Question From Text used code from https://github.com/patil-suraj/question_generation.git 
-
-
-nlp = pipeline("question-generation")
-
-# %%
-with open("./cleaned_coa.txt") as f:
-    sentences = f.read().split("\n")
-
-for sent in sentences:
-    if len(sent) == 0:
-        continue
-    try:
-        res = nlp(sent)
-    except ValueError:
-        continue
-
-    for x in res:
-        q, a = x["question"], x["answer"]
-
-        print(q, "\t", a)
-
 # %%
 
 
-# %%
