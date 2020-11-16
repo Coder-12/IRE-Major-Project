@@ -4,11 +4,6 @@ from pipelines import pipeline
 import sys
 
 # %%
-
-# %%
-!pip install -U spacy
-# %%
-# %%
 def getdata(filename):
     data=""
     with open(filepath,'r') as fp:
